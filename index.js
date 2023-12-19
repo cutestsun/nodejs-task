@@ -1,3 +1,4 @@
+import "dotenv/config";
 import cors from "cors";
 import express from "express";
 import { initRoutes } from "./routes/routes.js";
@@ -14,7 +15,10 @@ initRoutes(app);
 
 app.use("/", express.static("./client/build"));
 
-const port = 3080;
-app.listen(port, () => {});
+const port = process.env.PORT || 3080;
+
+app.listen(port, () => {
+  console.log(`Server running on ${port} port.`);
+});
 
 export { app };
